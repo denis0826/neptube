@@ -101,7 +101,7 @@ const Wallet = (props: any) => {
                 {!active ? (
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Wallet not connected. <br /> Please click the "Connect"
+                      Wallet not connected. <br /> Please click the Connect
                       button below
                     </p>
                   </div>
