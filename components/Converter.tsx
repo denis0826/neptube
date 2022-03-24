@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { useWeb3React } from '@web3-react/core'
 import { useState, ChangeEvent } from 'react'
 import { ImLoop } from 'react-icons/im'
 import { FaWallet } from 'react-icons/fa'
@@ -11,7 +10,6 @@ interface convertCurrencyProp {
 }
 
 export const Converter: NextPage = () => {
-  const { active } = useWeb3React()
 
   //@NOTE in real project we are pulling this data in API, so much better if we put this in state
   const [rate, setRate] = useState({
