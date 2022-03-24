@@ -3,11 +3,11 @@ import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import type { AppProps } from 'next/app'
 
-function getLibrary(provider: any) {
+const getLibrary = (provider: any) => {
   return new Web3(provider)
 }
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <Component {...pageProps} />

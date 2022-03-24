@@ -10,7 +10,6 @@ interface convertCurrencyProp {
 }
 
 export const Converter: NextPage = () => {
-
   //@NOTE in real project we are pulling this data in API, so much better if we put this in state
   const [rate, setRate] = useState({
     nep: {

@@ -5,12 +5,17 @@ import { FaWallet } from 'react-icons/fa'
 
 import { injected } from '../components/wallet/connector'
 
-const Wallet = (props: any) => {
-  const { active, account, library, activate, deactivate, chainId } =
+interface walletProps {
+  showModal: (p: boolean) => void
+}
+
+const Wallet = ({ showModal }: walletProps) => {
+  const { active, account, library, activate, deactivate, chainId, error } =
     useWeb3React()
+
   const [balance, setBalance] = useState()
 
-  useEffect((): any => {
+  useEffect(() => {
     if (!!account && !!library) {
       let stale = false
 
@@ -101,8 +106,9 @@ const Wallet = (props: any) => {
                 {!active ? (
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Wallet not connected. <br /> Please click the Connect
-                      button below
+                      {error
+                        ? 'Wallet not supported please switch to BSC Testnet 97'
+                        : 'Wallet not connected. Please click the Connect button below'}
                     </p>
                   </div>
                 ) : (
@@ -157,7 +163,7 @@ const Wallet = (props: any) => {
                   Connect
                 </button>
                 <button
-                  onClick={() => props.showModal(false)}
+                  onClick={() => showModal(false)}
                   type="button"
                   className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                 >
@@ -168,7 +174,7 @@ const Wallet = (props: any) => {
               <>
                 <button
                   onClick={() => {
-                    props.showModal(false)
+                    showModal(false)
                     disconnect()
                   }}
                   className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
